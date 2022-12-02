@@ -116,24 +116,17 @@ function draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, 
 		vertex_colour(b, color, alpha);
 		vertex_texcoord(b, c_curr[3], c_curr[4]);
 		
-		if return_pts != -1 and i % 3 == 1 {
+		if return_pts != -1 and i > 0 and i % 6 == 1 {
 			
-			if prev_px == undefined {
-				prev_px = x + xx;
-				prev_py = y + yy;
-			}
-			else {
-				this_px = x + xx;
-				this_py = y + yy;
-				
-			    var ds = point_distance(this_px, this_py, prev_px, prev_py) * return_pts;
-			    var dr = point_direction(this_px, this_py, prev_px, prev_py);
+			prev_px = x + coords[i-1][0] - xoff;
+			prev_py = y + coords[i-1][1] - yoff;
+			this_px = x + xx;
+			this_py = y + yy;
+			
+			var ds = point_distance(this_px, this_py, prev_px, prev_py) * return_pts;
+			var dr = point_direction(this_px, this_py, prev_px, prev_py);
     
-			    final_pts[ptsi++] = [ prev_px + lengthdir_x(ds, dr), prev_py + lengthdir_y(ds, dr) ];
-				
-				prev_px = this_px;
-				prev_py = this_py;
-			}
+			final_pts[ptsi++] = [ this_px + lengthdir_x(ds, dr), this_py + lengthdir_y(ds, dr) ];
 		}
 	}
 	
