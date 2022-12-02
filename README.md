@@ -1,4 +1,5 @@
 # draw_sprite_bent
+```draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, segments, xscale = 1, yscale = 1, rot = 0, color = c_white, alpha = 1, return_pts = false)```  
 Simple vertical bend without having to use bones  
   
 Don't recommend using too many segments in too many objects because unfrozen vertexes kill fps
