@@ -6,6 +6,10 @@ Simple vertical bend without having to use bones
 Don't recommend using too many segments in too many objects because unfrozen vertexes kill fps  
 THE SPRITE REQUIRES TO HAVE "Separate texture page" TICKED!  
   
+return_pts = 0   -> return point coordinates of the left side  
+return_pts = 0.5 -> return point coordinates in the middle  
+return_pts = 1   -> return point coordinates of the right side  
+  
 The green dot is around_x and around_y attached to the mouse cursor  
 Adjusting the bend_angle with mouse wheel  
 40 segments  
