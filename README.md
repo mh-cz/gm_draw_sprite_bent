@@ -6,4 +6,4 @@ Don't recommend using too many segments in too many objects because unfrozen ver
 The green dot is around_x and around_y attached to the mouse cursor  
 Adjusting the bend_angle with mouse wheel  
 40 segments  
-![image](https://user-images.githubusercontent.com/68820052/205256269-94bb7ca2-d5db-44d4-b1f4-d6031c82a426.png)
+![image](https://i.postimg.cc/5yn0pCQc/ezgif-2-b48a104d230e.gif)
