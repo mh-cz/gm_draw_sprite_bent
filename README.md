@@ -3,7 +3,8 @@
   
 Simple vertical bend without having to use bones  
   
-Don't recommend using too many segments in too many objects because unfrozen vertexes kill fps
+Don't recommend using too many segments in too many objects because unfrozen vertexes kill fps  
+THE SPRTIE REQUIRES TO HAVE "Separate texture page" TICKED!  
   
 The green dot is around_x and around_y attached to the mouse cursor  
 Adjusting the bend_angle with mouse wheel  
