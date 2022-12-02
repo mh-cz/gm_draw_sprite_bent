@@ -7,7 +7,7 @@ vertex_format_add_texcoord();
 global.BEND_SPR_DATA[0] = vertex_format_end(); // vf
 global.BEND_SPR_DATA[1] = vertex_create_buffer(); // b
 
-function draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, segments, xscale = 1, yscale = 1, rot = 0, color = c_white, alpha = 1, return_pts = false) {
+function draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, segments, xscale = 1, yscale = 1, rot = 0, color = c_white, alpha = 1, return_pts = -1) {
 	
 	var spr_w = sprite_get_width(spr);
 	var spr_h = sprite_get_height(spr);
@@ -70,8 +70,13 @@ function draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, 
 	
 	vertex_begin(b, vf);
 	
-	var final_pts = return_pts ? array_create(uvlen) : [];
+	var final_pts = return_pts != -1 ? array_create(floor(segments/2)) : [];
 	var ptsi = 0;
+	var prev_px = undefined;
+	var prev_py = undefined;
+	var this_px = 0;
+	var this_py = 0;
+	
 	var c_prev, c_next, c_curr;
 	
 	for(var i = 0; i < ci; i++) {
@@ -111,8 +116,25 @@ function draw_sprite_bent(spr, img_index, x, y, around_x, around_y, bend_angle, 
 		vertex_colour(b, color, alpha);
 		vertex_texcoord(b, c_curr[3], c_curr[4]);
 		
-		if return_pts final_pts[ptsi++] = [x + xx, y + yy];
-		draw_circle(x + xx, y + yy, 4, false);
+		if return_pts != -1 and i % 3 == 1 {
+			
+			if prev_px == undefined {
+				prev_px = x + xx;
+				prev_py = y + yy;
+			}
+			else {
+				this_px = x + xx;
+				this_py = y + yy;
+				
+			    var ds = point_distance(this_px, this_py, prev_px, prev_py) * return_pts;
+			    var dr = point_direction(this_px, this_py, prev_px, prev_py);
+    
+			    final_pts[ptsi++] = [ prev_px + lengthdir_x(ds, dr), prev_py + lengthdir_y(ds, dr) ];
+				
+				prev_px = this_px;
+				prev_py = this_py;
+			}
+		}
 	}
 	
 	vertex_end(b);
